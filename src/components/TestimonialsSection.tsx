@@ -27,10 +27,10 @@ const testimonials = [
 ];
 
 const activityImages = [
-  { src: activityGroupPhoto, label: "Student Group Photo" },
-  { src: activityMeeting, label: "Workshop Session" },
-  { src: activityCourtroomSession, label: "Moot Court Training" },
-  { src: activityStudentsListening, label: "Mentorship Session" },
+  { src: activityGroupPhoto, alt: "Student Group Photo", label: "Student Group Photo" },
+  { src: activityMeeting, alt: "Workshop Session", label: "Workshop Session" },
+  { src: activityCourtroomSession, alt: "Moot Court Training", label: "Moot Court Training" },
+  { src: activityStudentsListening, alt: "Mentorship Session", label: "Mentorship Session" },
 ];
 
 const TestimonialsSection = () => {
@@ -112,7 +112,8 @@ const TestimonialsSection = () => {
               >
                 <img
                   src={item.src}
-                  alt={item.label}
+                  alt={item.alt}
+                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
