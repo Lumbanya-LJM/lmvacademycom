@@ -50,13 +50,13 @@ const Navbar = () => {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
-            <img 
-              src={lmvLogo} 
-              alt="LMV Academy Logo" 
-              className={`h-10 md:h-12 w-auto transition-all duration-500 ${
-                isScrolled ? "opacity-100" : "opacity-0 scale-90"
-              }`}
-            />
+            <div className="h-10 md:h-12 w-10 md:w-12 flex items-center justify-center bg-primary-foreground rounded-lg p-1.5 shadow-sm">
+              <img 
+                src={lmvLogo} 
+                alt="LMV Academy Logo" 
+                className="h-full w-auto object-contain"
+              />
+            </div>
             <span className={`font-heading text-lg md:text-xl font-semibold tracking-tight transition-colors duration-300 ${
               isScrolled ? "text-primary" : "text-primary-foreground"
             }`}>
