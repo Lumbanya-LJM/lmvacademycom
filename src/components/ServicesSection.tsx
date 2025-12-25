@@ -1,4 +1,5 @@
 import { GraduationCap, Briefcase, BookOpen, Video, Rocket, Users } from "lucide-react";
+import useScrollReveal from "@/hooks/useScrollReveal";
 
 const services = [
   {
@@ -34,11 +35,17 @@ const services = [
 ];
 
 const ServicesSection = () => {
+  const headerReveal = useScrollReveal();
+  const servicesReveal = useScrollReveal({ threshold: 0.05 });
+
   return (
     <section id="services" className="section-padding bg-secondary/30">
       <div className="container-narrow mx-auto">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div 
+          ref={headerReveal.ref}
+          className={`max-w-3xl mx-auto text-center mb-16 reveal ${headerReveal.isVisible ? 'visible' : ''}`}
+        >
           <span className="inline-block text-sm font-body font-semibold text-accent uppercase tracking-widest mb-4">
             Our Services
           </span>
@@ -52,12 +59,15 @@ const ServicesSection = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div 
+          ref={servicesReveal.ref}
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {services.map((service, index) => (
             <div
               key={service.title}
-              className="group relative p-8 bg-background rounded-xl border border-border hover:border-primary/30 overflow-hidden card-hover"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className={`group relative p-8 bg-background rounded-xl border border-border hover:border-primary/30 overflow-hidden card-hover reveal ${servicesReveal.isVisible ? 'visible' : ''}`}
+              style={{ transitionDelay: `${index * 80}ms` }}
             >
               {/* Hover Gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

@@ -53,11 +53,11 @@ const Navbar = () => {
             <img 
               src={lmvLogo} 
               alt="LMV Academy Logo" 
-              className={`h-10 md:h-12 w-auto transition-all duration-300 ${
-                isScrolled ? "" : "brightness-0 invert"
+              className={`h-10 md:h-12 w-auto transition-all duration-500 ${
+                isScrolled ? "opacity-100" : "opacity-0 scale-90"
               }`}
             />
-            <span className={`font-heading text-lg md:text-xl font-semibold tracking-tight transition-colors duration-300 hidden sm:block ${
+            <span className={`font-heading text-lg md:text-xl font-semibold tracking-tight transition-colors duration-300 ${
               isScrolled ? "text-primary" : "text-primary-foreground"
             }`}>
               LMV Academy

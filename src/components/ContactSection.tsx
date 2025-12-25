@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import useScrollReveal from "@/hooks/useScrollReveal";
 
 const ContactSection = () => {
   const { toast } = useToast();
@@ -13,6 +14,10 @@ const ContactSection = () => {
     email: "",
     message: ""
   });
+
+  const headerReveal = useScrollReveal();
+  const formReveal = useScrollReveal();
+  const infoReveal = useScrollReveal();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,7 +46,10 @@ const ContactSection = () => {
     <section id="contact" className="section-padding bg-background">
       <div className="container-narrow mx-auto">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div 
+          ref={headerReveal.ref}
+          className={`max-w-3xl mx-auto text-center mb-16 reveal ${headerReveal.isVisible ? 'visible' : ''}`}
+        >
           <span className="inline-block text-sm font-body font-semibold text-accent uppercase tracking-widest mb-4">
             Get in Touch
           </span>
@@ -56,7 +64,10 @@ const ContactSection = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Contact Form */}
-          <div className="bg-card rounded-2xl p-8 md:p-10 border border-border">
+          <div 
+            ref={formReveal.ref}
+            className={`bg-card rounded-2xl p-8 md:p-10 border border-border reveal-left ${formReveal.isVisible ? 'visible' : ''}`}
+          >
             <h3 className="font-heading text-2xl font-semibold text-foreground mb-6">
               Send us a message
             </h3>
@@ -125,7 +136,10 @@ const ContactSection = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="flex flex-col justify-center">
+          <div 
+            ref={infoReveal.ref}
+            className={`flex flex-col justify-center reveal-right ${infoReveal.isVisible ? 'visible' : ''}`}
+          >
             <div className="space-y-8">
               <div className="flex items-start gap-5">
                 <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center shrink-0">

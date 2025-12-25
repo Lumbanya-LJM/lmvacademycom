@@ -1,4 +1,5 @@
 import { Target, Users, Lightbulb, Award } from "lucide-react";
+import useScrollReveal from "@/hooks/useScrollReveal";
 
 const features = [
   {
@@ -24,11 +25,18 @@ const features = [
 ];
 
 const AboutSection = () => {
+  const headerReveal = useScrollReveal();
+  const featuresReveal = useScrollReveal({ threshold: 0.05 });
+  const missionReveal = useScrollReveal();
+
   return (
     <section id="about" className="section-padding bg-background">
       <div className="container-narrow mx-auto">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div 
+          ref={headerReveal.ref}
+          className={`max-w-3xl mx-auto text-center mb-16 reveal ${headerReveal.isVisible ? 'visible' : ''}`}
+        >
           <span className="inline-block text-sm font-body font-semibold text-accent uppercase tracking-widest mb-4">
             About Us
           </span>
@@ -44,12 +52,15 @@ const AboutSection = () => {
         </div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+        <div 
+          ref={featuresReveal.ref}
+          className="grid md:grid-cols-2 gap-6 lg:gap-8"
+        >
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className="group p-8 bg-card rounded-xl border border-border hover:border-primary/20 card-hover"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className={`group p-8 bg-card rounded-xl border border-border hover:border-primary/20 card-hover reveal ${featuresReveal.isVisible ? 'visible' : ''}`}
+              style={{ transitionDelay: `${index * 100}ms` }}
             >
               <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
                 <feature.icon className="w-7 h-7 text-primary" />
@@ -65,7 +76,10 @@ const AboutSection = () => {
         </div>
 
         {/* Mission Statement */}
-        <div className="mt-16 p-8 md:p-12 bg-gradient-to-br from-primary to-accent rounded-2xl text-center">
+        <div 
+          ref={missionReveal.ref}
+          className={`mt-16 p-8 md:p-12 bg-gradient-to-br from-primary to-accent rounded-2xl text-center reveal-scale ${missionReveal.isVisible ? 'visible' : ''}`}
+        >
           <blockquote className="font-heading text-2xl md:text-3xl font-medium text-primary-foreground italic leading-relaxed max-w-3xl mx-auto">
             "Our mission is to nurture academic excellence, foster innovation, and develop 
             the professional competencies that transform students into industry leaders."
