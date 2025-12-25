@@ -1,5 +1,9 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { Quote, Play, Image } from "lucide-react";
+import { Quote } from "lucide-react";
+import activityGroupPhoto from "@/assets/activity-group-photo.jpeg";
+import activityMeeting from "@/assets/activity-meeting.jpeg";
+import activityCourtroomSession from "@/assets/activity-courtroom-session.jpeg";
+import activityStudentsListening from "@/assets/activity-students-listening.jpeg";
 
 const testimonials = [
   {
@@ -22,13 +26,11 @@ const testimonials = [
   },
 ];
 
-const activityPlaceholders = [
-  { type: "image", label: "Workshop Session" },
-  { type: "video", label: "Mentorship Highlight" },
-  { type: "image", label: "Student Presentation" },
-  { type: "image", label: "Networking Event" },
-  { type: "video", label: "Academy Tour" },
-  { type: "image", label: "Graduation Ceremony" },
+const activityImages = [
+  { src: activityGroupPhoto, label: "Student Group Photo" },
+  { src: activityMeeting, label: "Workshop Session" },
+  { src: activityCourtroomSession, label: "Moot Court Training" },
+  { src: activityStudentsListening, label: "Mentorship Session" },
 ];
 
 const TestimonialsSection = () => {
@@ -102,22 +104,22 @@ const TestimonialsSection = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {activityPlaceholders.map((item, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {activityImages.map((item, index) => (
               <div
                 key={index}
-                className={`reveal stagger-${(index % 4) + 1} aspect-video bg-gradient-to-br from-primary/5 to-accent/5 rounded-xl border-2 border-dashed border-primary/20 flex flex-col items-center justify-center gap-3 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 cursor-pointer group`}
+                className={`reveal stagger-${(index % 4) + 1} aspect-[4/3] rounded-xl overflow-hidden group relative`}
               >
-                {item.type === "video" ? (
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <Play className="w-5 h-5 text-primary ml-0.5" />
-                  </div>
-                ) : (
-                  <Image className="w-10 h-10 text-primary/40 group-hover:text-primary/60 transition-colors" />
-                )}
-                <span className="font-body text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                  {item.label}
-                </span>
+                <img
+                  src={item.src}
+                  alt={item.label}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                  <span className="font-body text-sm text-background p-4 font-medium">
+                    {item.label}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
