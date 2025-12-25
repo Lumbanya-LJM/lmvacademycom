@@ -14,23 +14,23 @@ const testimonials = [
   },
   {
     name: "David K.",
-    role: "Business Graduate",
+    role: "Law Student",
     quote: "The practical skills and professional development sessions gave me confidence I never knew I had. Highly recommend to any serious student.",
     image: null,
   },
   {
     name: "Grace N.",
-    role: "Engineering Student",
-    quote: "The tutoring support was exceptional. My grades improved significantly, and I learned how to think critically about complex problems.",
+    role: "Law Student",
+    quote: "The tutoring support was exceptional. My grades improved significantly, and I learned how to think critically about complex legal problems.",
     image: null,
   },
 ];
 
 const activityImages = [
-  { src: activityGroupPhoto, alt: "Student Group Photo", label: "Student Group Photo" },
-  { src: activityMeeting, alt: "Workshop Session", label: "Workshop Session" },
-  { src: activityCourtroomSession, alt: "Moot Court Training", label: "Moot Court Training" },
-  { src: activityStudentsListening, alt: "Mentorship Session", label: "Mentorship Session" },
+  { src: activityGroupPhoto, alt: "LMV Academy visit to the Competition and Consumer Protection Commission", label: "Visit to the Competition and Consumer Protection Commission" },
+  { src: activityMeeting, alt: "LMV Academy visit to the Competition and Consumer Protection Commission", label: "Visit to the Competition and Consumer Protection Commission" },
+  { src: activityCourtroomSession, alt: "LMV Students tour of the High Court and Supreme Court of Zambia", label: "Tour of the High Court and Supreme Court" },
+  { src: activityStudentsListening, alt: "LMV Students tour of the High Court and Supreme Court of Zambia", label: "Tour of the High Court and Supreme Court" },
 ];
 
 const TestimonialsSection = () => {
