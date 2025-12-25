@@ -1,10 +1,22 @@
 import { Facebook, Instagram, Linkedin, Youtube, Mail } from "lucide-react";
+import lmvLogo from "@/assets/lmv-logo.png";
+
+// TikTok icon component since lucide-react doesn't have it
+const TikTokIcon = ({ className }: { className?: string }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    fill="currentColor" 
+    className={className}
+  >
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+  </svg>
+);
 
 const socialLinks = [
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Youtube, href: "#", label: "YouTube" }
+  { icon: Facebook, href: "https://www.facebook.com/share/1ALPNZhhoM/?mibextid=wwXIfr", label: "Facebook" },
+  { icon: Instagram, href: "https://www.instagram.com/l.m.v_academy?igsh=aHc0b2h5ZmxzZzRi", label: "Instagram" },
+  { icon: Linkedin, href: "https://www.linkedin.com/company/luminary-innovision-academy/", label: "LinkedIn" },
+  { icon: TikTokIcon, href: "https://www.tiktok.com/@l.m.v.academy?_r=1&_t=ZM-92VzyuSbqki", label: "TikTok" }
 ];
 
 const footerLinks = [
@@ -43,6 +55,8 @@ const Footer = () => {
                 <a
                   key={social.label}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={social.label}
                   className="w-12 h-12 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground hover:text-foreground transition-all duration-300"
                 >
@@ -59,7 +73,14 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <h3 className="font-heading text-2xl font-bold mb-4">LMV Academy</h3>
+            <div className="flex items-center gap-3 mb-4">
+              <img 
+                src={lmvLogo} 
+                alt="LMV Academy Logo" 
+                className="h-12 w-auto brightness-0 invert"
+              />
+              <h3 className="font-heading text-2xl font-bold">LMV Academy</h3>
+            </div>
             <p className="font-body text-primary-foreground/70 max-w-md mb-6 leading-relaxed">
               Luminary Innovision Academy empowers students and young professionals through 
               mentorship, live learning, and practical skills development for tomorrow's leaders.
@@ -89,6 +110,16 @@ const Footer = () => {
                   </button>
                 </li>
               ))}
+              <li>
+                <a
+                  href="https://app.lmvacademy.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-body text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm"
+                >
+                  Student/Tutor Portal
+                </a>
+              </li>
             </ul>
           </div>
 

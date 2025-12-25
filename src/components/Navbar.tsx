@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import lmvLogo from "@/assets/lmv-logo.png";
 
 const navLinks = [
   { href: "#about", label: "About" },
@@ -43,13 +44,20 @@ const Navbar = () => {
           {/* Logo */}
           <a
             href="#"
-            className="flex items-center gap-2"
+            className="flex items-center gap-3"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
-            <span className={`font-heading text-xl md:text-2xl font-semibold tracking-tight transition-colors duration-300 ${
+            <img 
+              src={lmvLogo} 
+              alt="LMV Academy Logo" 
+              className={`h-10 md:h-12 w-auto transition-all duration-300 ${
+                isScrolled ? "" : "brightness-0 invert"
+              }`}
+            />
+            <span className={`font-heading text-lg md:text-xl font-semibold tracking-tight transition-colors duration-300 hidden sm:block ${
               isScrolled ? "text-primary" : "text-primary-foreground"
             }`}>
               LMV Academy
@@ -57,7 +65,7 @@ const Navbar = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <button
                 key={link.href}
@@ -71,6 +79,19 @@ const Navbar = () => {
                 {link.label}
               </button>
             ))}
+            <a
+              href="https://app.lmvacademy.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`font-body text-sm font-medium transition-colors duration-300 flex items-center gap-1.5 ${
+                isScrolled
+                  ? "text-foreground hover:text-primary"
+                  : "text-primary-foreground/90 hover:text-primary-foreground"
+              }`}
+            >
+              <LogIn className="w-4 h-4" />
+              Portal
+            </a>
             <Button
               variant={isScrolled ? "default" : "hero-outline"}
               size="sm"
@@ -82,7 +103,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2"
+            className="lg:hidden p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -96,8 +117,8 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <div
-          className={`md:hidden overflow-hidden transition-all duration-500 ${
-            isMobileMenuOpen ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
+          className={`lg:hidden overflow-hidden transition-all duration-500 ${
+            isMobileMenuOpen ? "max-h-[500px] opacity-100 mt-4" : "max-h-0 opacity-0"
           }`}
         >
           <div className="bg-background rounded-lg shadow-elevated p-4 space-y-2">
@@ -110,6 +131,15 @@ const Navbar = () => {
                 {link.label}
               </button>
             ))}
+            <a
+              href="https://app.lmvacademy.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 w-full text-left px-4 py-3 text-foreground hover:text-primary hover:bg-secondary/50 rounded-md transition-colors font-body"
+            >
+              <LogIn className="w-4 h-4" />
+              Student/Tutor Portal
+            </a>
             <Button
               variant="default"
               className="w-full mt-2"
