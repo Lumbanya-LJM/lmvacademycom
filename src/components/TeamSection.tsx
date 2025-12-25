@@ -1,6 +1,7 @@
 import { Linkedin, Mail } from "lucide-react";
 import lumbanyaImage from "@/assets/lumbanya-mulenga.jpeg";
 import natashaImage from "@/assets/natasha-fumbauta.jpeg";
+import useScrollReveal from "@/hooks/useScrollReveal";
 
 const team = [
   {
@@ -24,11 +25,17 @@ const team = [
 ];
 
 const TeamSection = () => {
+  const headerReveal = useScrollReveal();
+  const teamReveal = useScrollReveal({ threshold: 0.05 });
+
   return (
     <section id="team" className="section-padding bg-background">
       <div className="container-narrow mx-auto">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div 
+          ref={headerReveal.ref}
+          className={`max-w-3xl mx-auto text-center mb-16 reveal ${headerReveal.isVisible ? 'visible' : ''}`}
+        >
           <span className="inline-block text-sm font-body font-semibold text-accent uppercase tracking-widest mb-4">
             Our Leadership
           </span>
@@ -42,12 +49,15 @@ const TeamSection = () => {
         </div>
 
         {/* Team Grid */}
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+        <div 
+          ref={teamReveal.ref}
+          className="grid md:grid-cols-2 gap-8 lg:gap-12"
+        >
           {team.map((member, index) => (
             <div
               key={member.name}
-              className="group bg-card rounded-2xl overflow-hidden border border-border hover:border-primary/20 card-hover"
-              style={{ animationDelay: `${index * 150}ms` }}
+              className={`group bg-card rounded-2xl overflow-hidden border border-border hover:border-primary/20 card-hover ${index === 0 ? 'reveal-left' : 'reveal-right'} ${teamReveal.isVisible ? 'visible' : ''}`}
+              style={{ transitionDelay: `${index * 150}ms` }}
             >
               {/* Image */}
               <div className="relative h-80 md:h-96 overflow-hidden">

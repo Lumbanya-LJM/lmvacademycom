@@ -1,5 +1,6 @@
 import { Calendar, ArrowRight, Headphones, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import useScrollReveal from "@/hooks/useScrollReveal";
 
 const updates = [
   {
@@ -25,11 +26,18 @@ const updates = [
 const SPOTIFY_PODCAST_URL = "https://creators.spotify.com/pod/profile/luminary-innovision-acade/episodes/Women-in-Leadership-e33h00q";
 
 const UpdatesSection = () => {
+  const headerReveal = useScrollReveal();
+  const updatesReveal = useScrollReveal({ threshold: 0.05 });
+  const podcastReveal = useScrollReveal();
+
   return (
     <section id="updates" className="section-padding bg-secondary/30">
       <div className="container-narrow mx-auto">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div 
+          ref={headerReveal.ref}
+          className={`max-w-3xl mx-auto text-center mb-16 reveal ${headerReveal.isVisible ? 'visible' : ''}`}
+        >
           <span className="inline-block text-sm font-body font-semibold text-accent uppercase tracking-widest mb-4">
             Stay Updated
           </span>
@@ -43,12 +51,15 @@ const UpdatesSection = () => {
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Updates Column */}
-          <div className="lg:col-span-2 space-y-6">
+          <div 
+            ref={updatesReveal.ref}
+            className="lg:col-span-2 space-y-6"
+          >
             {updates.map((update, index) => (
               <article
                 key={update.title}
-                className="group p-6 bg-background rounded-xl border border-border hover:border-primary/20 card-hover flex gap-6"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className={`group p-6 bg-background rounded-xl border border-border hover:border-primary/20 card-hover flex gap-6 reveal-left ${updatesReveal.isVisible ? 'visible' : ''}`}
+                style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <div className="hidden sm:flex flex-col items-center justify-center w-20 h-20 bg-primary/10 rounded-xl shrink-0">
                   <Calendar className="w-6 h-6 text-primary mb-1" />
@@ -72,8 +83,11 @@ const UpdatesSection = () => {
           </div>
 
           {/* Podcast Card */}
-          <div className="lg:col-span-1">
-            <div className="p-8 bg-gradient-to-br from-primary to-accent rounded-2xl text-primary-foreground h-full flex flex-col">
+          <div 
+            ref={podcastReveal.ref}
+            className="lg:col-span-1"
+          >
+            <div className={`p-8 bg-gradient-to-br from-primary to-accent rounded-2xl text-primary-foreground h-full flex flex-col reveal-right ${podcastReveal.isVisible ? 'visible' : ''}`}>
               <div className="w-16 h-16 bg-primary-foreground/20 rounded-2xl flex items-center justify-center mb-6">
                 <Headphones className="w-8 h-8" />
               </div>
