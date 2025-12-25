@@ -22,6 +22,8 @@ const updates = [
   }
 ];
 
+const SPOTIFY_PODCAST_URL = "https://creators.spotify.com/pod/profile/luminary-innovision-acade/episodes/Women-in-Leadership-e33h00q";
+
 const UpdatesSection = () => {
   return (
     <section id="updates" className="section-padding bg-secondary/30">
@@ -86,18 +88,25 @@ const UpdatesSection = () => {
                 and professional development. Available on your favorite platforms.
               </p>
               <div className="flex flex-wrap gap-3">
-                <Button
-                  variant="hero-outline"
-                  size="sm"
-                  className="gap-2"
+                <a
+                  href={SPOTIFY_PODCAST_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <ExternalLink className="w-4 h-4" />
-                  Spotify
-                </Button>
+                  <Button
+                    variant="hero-outline"
+                    size="sm"
+                    className="gap-2"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    Spotify
+                  </Button>
+                </a>
                 <Button
                   variant="hero-outline"
                   size="sm"
                   className="gap-2"
+                  disabled
                 >
                   <ExternalLink className="w-4 h-4" />
                   Apple Podcasts

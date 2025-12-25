@@ -8,14 +8,18 @@ const team = [
     role: "Managing Partner",
     specialty: "Business Development & Regulatory Compliance",
     bio: "Lumbanya J. Mulenga is an Advocate of the High Court of Zambia (AHCZ), and a legal practitioner with vast experience in mentoring and teaching law students. His passion lies in helping students think beyond the classroom and hone the skills required to excel as future legal practitioners and leaders.",
-    image: lumbanyaImage
+    image: lumbanyaImage,
+    linkedin: "http://linkedin.com/in/lumbanya-judah-mulenga-64a318177",
+    email: "ljmulenga@lmvacademy.com"
   },
   {
     name: "Natasha Keturah Fumbauta",
     role: "Managing Partner",
     specialty: "Publicity & Student Affairs",
     bio: "Natasha Keturah Fumbauta is a lawyer with extensive teaching experience, having tutored a wide range of courses at the University of Lusaka. She is passionate about student development, academic excellence, and empowering learners to unlock their full potential.",
-    image: natashaImage
+    image: natashaImage,
+    linkedin: "http://linkedin.com/in/natasha-fumbauta-9b5b78245",
+    email: "nkfumbauta@lmvacademy.com"
   }
 ];
 
@@ -76,12 +80,22 @@ const TeamSection = () => {
                 
                 {/* Social Links */}
                 <div className="flex gap-3 mt-6">
-                  <button className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <a 
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+                    aria-label={`${member.name}'s LinkedIn profile`}
+                  >
                     <Linkedin className="w-4 h-4" />
-                  </button>
-                  <button className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                  </a>
+                  <a 
+                    href={`mailto:${member.email}`}
+                    className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+                    aria-label={`Email ${member.name}`}
+                  >
                     <Mail className="w-4 h-4" />
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
