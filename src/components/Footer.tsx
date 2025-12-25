@@ -1,16 +1,21 @@
-import { Facebook, Instagram, Linkedin, Youtube, Mail } from "lucide-react";
+import { forwardRef } from "react";
+import { Facebook, Instagram, Linkedin, Mail } from "lucide-react";
 import lmvLogo from "@/assets/lmv-logo.png";
 
-// TikTok icon component since lucide-react doesn't have it
-const TikTokIcon = ({ className }: { className?: string }) => (
-  <svg 
-    viewBox="0 0 24 24" 
-    fill="currentColor" 
-    className={className}
-  >
-    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-  </svg>
+// TikTok icon component with forwardRef to avoid React warning
+const TikTokIcon = forwardRef<SVGSVGElement, { className?: string }>(
+  ({ className }, ref) => (
+    <svg 
+      ref={ref}
+      viewBox="0 0 24 24" 
+      fill="currentColor" 
+      className={className}
+    >
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+    </svg>
+  )
 );
+TikTokIcon.displayName = "TikTokIcon";
 
 const socialLinks = [
   { icon: Facebook, href: "https://www.facebook.com/share/1ALPNZhhoM/?mibextid=wwXIfr", label: "Facebook" },
@@ -74,11 +79,13 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <img 
-                src={lmvLogo} 
-                alt="LMV Academy Logo" 
-                className="h-12 w-auto brightness-0 invert"
-              />
+              <div className="h-12 w-12 flex items-center justify-center bg-primary-foreground rounded-lg p-1.5">
+                <img 
+                  src={lmvLogo} 
+                  alt="LMV Academy Logo" 
+                  className="h-full w-auto object-contain"
+                />
+              </div>
               <h3 className="font-heading text-2xl font-bold">LMV Academy</h3>
             </div>
             <p className="font-body text-primary-foreground/70 max-w-md mb-6 leading-relaxed">
