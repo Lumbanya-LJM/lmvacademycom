@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Send, Mail, MapPin, Phone } from "lucide-react";
+import { Send, Mail, MapPin, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -174,14 +174,22 @@ const ContactSection = () => {
 
               <div className="flex items-start gap-5">
                 <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center shrink-0">
-                  <Phone className="w-6 h-6 text-primary" />
+                  <MessageCircle className="w-6 h-6 text-primary" />
                 </div>
                 <div>
                   <h4 className="font-heading text-lg font-semibold text-foreground mb-1">
-                    Connect With Us
+                    WhatsApp
                   </h4>
-                  <p className="font-body text-muted-foreground">
-                    Follow us on social media for updates
+                  <a
+                    href="https://wa.me/260974534253"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-body text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    +260 974 534 253
+                  </a>
+                  <p className="font-body text-sm text-muted-foreground mt-1">
+                    Tap to chat with us directly.
                   </p>
                 </div>
               </div>

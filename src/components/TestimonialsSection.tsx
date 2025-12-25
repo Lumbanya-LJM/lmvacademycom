@@ -35,25 +35,25 @@ const activityImages = [
 
 const TestimonialsSection = () => {
   const { ref: sectionRef } = useScrollReveal();
-  const { ref: headerRef } = useScrollReveal();
-  const { ref: testimonialsRef } = useScrollReveal();
-  const { ref: galleryRef } = useScrollReveal();
+  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
+  const { ref: testimonialsRef, isVisible: testimonialsVisible } = useScrollReveal();
+  const { ref: galleryRef, isVisible: galleryVisible } = useScrollReveal();
 
   return (
     <section id="testimonials" className="py-20 md:py-28 bg-secondary/30 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div 
+        <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}
         />
       </div>
 
       <div ref={sectionRef} className="container-narrow mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div ref={headerRef} className="text-center mb-16 reveal">
+        <div ref={headerRef} className={`text-center mb-16 reveal ${headerVisible ? "visible" : ""}`}>
           <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
             Student Voices
           </span>
@@ -66,14 +66,18 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Testimonials Grid */}
-        <div ref={testimonialsRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-16 sm:mb-20">
+        <div
+          ref={testimonialsRef}
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-16 sm:mb-20"
+        >
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className={`reveal stagger-${index + 1} bg-background rounded-2xl p-6 md:p-8 shadow-soft hover:shadow-elevated transition-all duration-300 relative`}
+              className={`reveal ${testimonialsVisible ? "visible" : ""} bg-background rounded-2xl p-6 md:p-8 shadow-soft hover:shadow-elevated transition-all duration-300 relative`}
+              style={{ transitionDelay: `${index * 100}ms` }}
             >
               <Quote className="absolute top-6 right-6 w-8 h-8 text-primary/20" />
-              
+
               {/* Avatar Placeholder */}
               <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-4">
                 <span className="font-heading text-xl font-bold text-primary">
@@ -94,7 +98,7 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Activity Gallery */}
-        <div ref={galleryRef} className="reveal">
+        <div ref={galleryRef} className={`reveal ${galleryVisible ? "visible" : ""}`}>
           <div className="text-center mb-10">
             <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-3">
               Academy in Action
@@ -106,14 +110,12 @@ const TestimonialsSection = () => {
 
           <div className="grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-4">
             {activityImages.map((item, index) => (
-              <div
-                key={index}
-                className="aspect-[4/3] rounded-xl overflow-hidden group relative"
-              >
+              <div key={index} className="aspect-[4/3] rounded-xl overflow-hidden group relative">
                 <img
                   src={item.src}
                   alt={item.alt}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                   <span className="font-body text-sm text-background p-4 font-medium">
