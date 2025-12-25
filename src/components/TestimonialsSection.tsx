@@ -66,7 +66,7 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Testimonials Grid */}
-        <div ref={testimonialsRef} className="grid md:grid-cols-3 gap-6 mb-20">
+        <div ref={testimonialsRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-16 sm:mb-20">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
@@ -104,7 +104,7 @@ const TestimonialsSection = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-4">
             {activityImages.map((item, index) => (
               <div
                 key={index}

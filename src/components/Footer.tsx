@@ -75,18 +75,18 @@ const Footer = () => {
 
       {/* Main Footer */}
       <div className="container-narrow mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="h-12 w-12 flex items-center justify-center bg-primary-foreground rounded-lg p-1.5">
+              <div className="h-10 sm:h-12 w-10 sm:w-12 flex items-center justify-center bg-primary-foreground rounded-lg p-1 sm:p-1.5 flex-shrink-0">
                 <img 
                   src={lmvLogo} 
                   alt="LMV Academy Logo" 
                   className="h-full w-auto object-contain"
                 />
               </div>
-              <h3 className="font-heading text-2xl font-bold">LMV Academy</h3>
+              <h3 className="font-heading text-xl sm:text-2xl font-bold">LMV Academy</h3>
             </div>
             <p className="font-body text-primary-foreground/70 max-w-md mb-6 leading-relaxed">
               Luminary Innovision Academy empowers students and young professionals through 
