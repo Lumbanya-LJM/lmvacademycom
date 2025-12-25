@@ -59,11 +59,13 @@ const HeroSection = () => {
             <Button
               variant="hero-outline"
               size="xl"
-              onClick={() => scrollToSection("#contact")}
+              asChild
               className="group"
             >
-              Join the Academy
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              <a href="https://app.lmvacademy.com/auth" target="_blank" rel="noopener noreferrer">
+                Join the Academy
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </a>
             </Button>
             <Button
               variant="ghost"

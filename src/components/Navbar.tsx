@@ -95,9 +95,11 @@ const Navbar = () => {
             <Button
               variant={isScrolled ? "default" : "hero-outline"}
               size="sm"
-              onClick={() => scrollToSection("#contact")}
+              asChild
             >
-              Join the Academy
+              <a href="https://app.lmvacademy.com/auth" target="_blank" rel="noopener noreferrer">
+                Join the Academy
+              </a>
             </Button>
           </div>
 
@@ -143,9 +145,11 @@ const Navbar = () => {
             <Button
               variant="default"
               className="w-full mt-2"
-              onClick={() => scrollToSection("#contact")}
+              asChild
             >
-              Join the Academy
+              <a href="https://app.lmvacademy.com/auth" target="_blank" rel="noopener noreferrer">
+                Join the Academy
+              </a>
             </Button>
           </div>
         </div>
