@@ -108,12 +108,11 @@ const TestimonialsSection = () => {
             {activityImages.map((item, index) => (
               <div
                 key={index}
-                className={`reveal stagger-${(index % 4) + 1} aspect-[4/3] rounded-xl overflow-hidden group relative`}
+                className="aspect-[4/3] rounded-xl overflow-hidden group relative"
               >
                 <img
                   src={item.src}
                   alt={item.alt}
-                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
