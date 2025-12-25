@@ -27,9 +27,9 @@ const HeroSection = () => {
         }}
       />
 
-      {/* Animated Gradient Orbs */}
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
+      {/* Animated Gradient Orbs - hidden on mobile to prevent overflow */}
+      <div className="hidden sm:block absolute top-1/4 right-1/4 w-64 md:w-96 h-64 md:h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" />
+      <div className="hidden sm:block absolute bottom-1/4 left-1/4 w-52 md:w-80 h-52 md:h-80 bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
 
       {/* Content */}
       <div className="relative z-10 container-narrow mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -43,13 +43,13 @@ const HeroSection = () => {
           </div>
 
           {/* Headline */}
-          <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight mb-6 animate-fade-up animation-delay-100">
+          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary-foreground leading-tight mb-4 sm:mb-6 animate-fade-up animation-delay-100">
             Luminary Innovision{" "}
-            <span className="block mt-2">Academy</span>
+            <span className="block mt-1 sm:mt-2">Academy</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="font-body text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-up animation-delay-200">
+          <p className="font-body text-base sm:text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto mb-8 sm:mb-10 px-2 leading-relaxed animate-fade-up animation-delay-200">
             Transforming students into confident professionals through expert mentorship, 
             live learning experiences, and practical skills development for tomorrow's leaders.
           </p>
