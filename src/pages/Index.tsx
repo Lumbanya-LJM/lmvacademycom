@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
 
 const Index = () => {
-  const siteUrl = typeof window !== "undefined" ? window.location.origin : "https://lmvacademy.com";
+  const siteUrl = typeof window !== "undefined" ? window.location.origin : "https://app.lmvacademy.com";
   const ogImageUrl = `${siteUrl}/og-image.jpg`;
 
   return (

@@ -10,7 +10,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden overflow-x-hidden">
       {/* Background Gradient */}
       <div 
         className="absolute inset-0 z-0"
@@ -28,8 +28,8 @@ const HeroSection = () => {
       />
 
       {/* Animated Gradient Orbs - hidden on mobile to prevent overflow */}
-      <div className="hidden sm:block absolute top-1/4 right-1/4 w-64 md:w-96 h-64 md:h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" />
-      <div className="hidden sm:block absolute bottom-1/4 left-1/4 w-52 md:w-80 h-52 md:h-80 bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
+      <div className="absolute top-1/4 right-1/4 w-64 md:w-96 h-64 md:h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 left-1/4 w-52 md:w-80 h-52 md:h-80 bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
 
       {/* Content */}
       <div className="relative z-10 container-narrow mx-auto px-4 sm:px-6 lg:px-8 text-center">
