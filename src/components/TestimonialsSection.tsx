@@ -7,19 +7,19 @@ import activityStudentsListening from "@/assets/activity-students-listening.jpeg
 
 const testimonials = [
   {
-    name: "Sarah M.",
+    name: "Nalishebo S.",
     role: "Law Student",
     quote: "LMV Academy transformed my approach to learning. The mentorship I received helped me secure my dream internship at a top law firm.",
     image: null,
   },
   {
-    name: "David K.",
+    name: "Grace L.",
     role: "Law Student",
     quote: "The practical skills and professional development sessions gave me confidence I never knew I had. Highly recommend to any serious student.",
     image: null,
   },
   {
-    name: "Grace N.",
+    name: "David K.",
     role: "Law Student",
     quote: "The tutoring support was exceptional. My grades improved significantly, and I learned how to think critically about complex legal problems.",
     image: null,
