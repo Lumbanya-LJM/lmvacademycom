@@ -15,6 +15,20 @@ export const useScrollReveal = (options: UseScrollRevealOptions = {}) => {
     const element = ref.current;
     if (!element) return;
 
+    // Respect reduced-motion and ensure content is never stuck hidden
+    if (typeof window !== 'undefined') {
+      const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+      if (prefersReducedMotion) {
+        setIsVisible(true);
+        return;
+      }
+
+      if (!('IntersectionObserver' in window)) {
+        setIsVisible(true);
+        return;
+      }
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -31,7 +45,16 @@ export const useScrollReveal = (options: UseScrollRevealOptions = {}) => {
 
     observer.observe(element);
 
-    return () => observer.disconnect();
+    // Safety net: if a mobile browser fails to fire IntersectionObserver, reveal anyway
+    const safetyTimer = window.setTimeout(() => {
+      setIsVisible(true);
+      observer.unobserve(element);
+    }, 1500);
+
+    return () => {
+      window.clearTimeout(safetyTimer);
+      observer.disconnect();
+    };
   }, [threshold, rootMargin, triggerOnce]);
 
   return { ref, isVisible };

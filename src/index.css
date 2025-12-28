@@ -213,14 +213,15 @@
     transform: scale(1);
   }
 
-  /* Mobile safety: never hide content behind reveal animations */
-  @media (max-width: 640px) {
+  /* Accessibility: respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
     .reveal,
     .reveal-left,
     .reveal-right,
     .reveal-scale {
       opacity: 1;
       transform: none;
+      transition: none;
     }
   }
 
