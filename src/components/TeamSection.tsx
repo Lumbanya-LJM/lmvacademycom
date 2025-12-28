@@ -20,7 +20,7 @@ const team = [
     bio: "Natasha Keturah Fumbauta is a lawyer with extensive teaching experience, having tutored a wide range of courses at the University of Lusaka. She is passionate about student development, academic excellence, and empowering learners to unlock their full potential.",
     image: natashaImage,
     linkedin: "http://linkedin.com/in/natasha-fumbauta-9b5b78245",
-    email: "nkfumbauta@lmvacademy.com"
+    email: "nketurah@lmvacademy.com"
   }
 ];
 
