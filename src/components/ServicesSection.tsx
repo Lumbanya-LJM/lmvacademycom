@@ -1,4 +1,4 @@
-import { GraduationCap, Briefcase, BookOpen, Video, Rocket, Users } from "lucide-react";
+import { GraduationCap, Briefcase, BookOpen, Video, Rocket, Users, Gavel } from "lucide-react";
 import useScrollReveal from "@/hooks/useScrollReveal";
 
 const services = [
