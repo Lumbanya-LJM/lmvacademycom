@@ -1,4 +1,4 @@
-import { GraduationCap, Briefcase, BookOpen, Video, Rocket, Users } from "lucide-react";
+import { GraduationCap, Briefcase, BookOpen, Video, Rocket, Users, Gavel } from "lucide-react";
 import useScrollReveal from "@/hooks/useScrollReveal";
 
 const services = [
@@ -6,6 +6,11 @@ const services = [
     icon: GraduationCap,
     title: "Academic Mentorship",
     description: "Personalized tutoring and guidance from experienced practitioners to help you excel in your studies and examinations."
+  },
+  {
+    icon: Gavel,
+    title: "Moot Court Sessions & Training",
+    description: "Hands-on courtroom practice and advocacy training that builds confidence in legal argumentation, case presentation, and trial technique."
   },
   {
     icon: Briefcase,
