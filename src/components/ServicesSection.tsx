@@ -8,6 +8,11 @@ const services = [
     description: "Personalized tutoring and guidance from experienced practitioners to help you excel in your studies and examinations."
   },
   {
+    icon: Gavel,
+    title: "Moot Court Sessions & Training",
+    description: "Hands-on courtroom practice and advocacy training that builds confidence in legal argumentation, case presentation, and trial technique."
+  },
+  {
     icon: Briefcase,
     title: "Professional Skills Training",
     description: "Develop essential workplace competencies including communication, leadership, and career readiness skills."
