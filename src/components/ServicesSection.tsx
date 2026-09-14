@@ -1,7 +1,13 @@
-import { GraduationCap, Briefcase, BookOpen, Video, Rocket, Users, Gavel } from "lucide-react";
+import { GraduationCap, Briefcase, BookOpen, Video, Rocket, Users, Gavel, ArrowRight, type LucideIcon } from "lucide-react";
 import useScrollReveal from "@/hooks/useScrollReveal";
 
-const services = [
+const services: Array<{
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  cta?: string;
+  href?: string;
+}> = [
   {
     icon: GraduationCap,
     title: "Academic Mentorship",
@@ -10,7 +16,9 @@ const services = [
   {
     icon: Gavel,
     title: "Moot Court Sessions & Training",
-    description: "Hands-on courtroom practice and advocacy training that builds confidence in legal argumentation, case presentation, and trial technique."
+    description: "Hands-on courtroom practice and advocacy training that builds confidence in legal argumentation, case presentation, and trial technique.",
+    cta: "Start your training now!",
+    href: "https://app.lmvacademy.com/auth"
   },
   {
     icon: Briefcase,
@@ -87,6 +95,17 @@ const ServicesSection = () => {
                 <p className="font-body text-sm text-muted-foreground leading-relaxed">
                   {service.description}
                 </p>
+                {service.cta && service.href && (
+                  <a
+                    href={service.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 mt-5 text-sm font-body font-semibold text-primary hover:text-primary/80 transition-colors"
+                  >
+                    {service.cta}
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                )}
               </div>
             </div>
           ))}
