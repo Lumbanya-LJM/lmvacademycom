@@ -89,6 +89,17 @@ const ServicesSection = () => {
                 <p className="font-body text-sm text-muted-foreground leading-relaxed">
                   {service.description}
                 </p>
+                {service.cta && service.href && (
+                  <a
+                    href={service.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 mt-5 text-sm font-body font-semibold text-primary hover:text-primary/80 transition-colors"
+                  >
+                    {service.cta}
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                )}
               </div>
             </div>
           ))}
