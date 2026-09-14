@@ -1,7 +1,13 @@
-import { GraduationCap, Briefcase, BookOpen, Video, Rocket, Users, Gavel, ArrowRight } from "lucide-react";
+import { GraduationCap, Briefcase, BookOpen, Video, Rocket, Users, Gavel, ArrowRight, type LucideIcon } from "lucide-react";
 import useScrollReveal from "@/hooks/useScrollReveal";
 
-const services = [
+const services: Array<{
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  cta?: string;
+  href?: string;
+}> = [
   {
     icon: GraduationCap,
     title: "Academic Mentorship",
