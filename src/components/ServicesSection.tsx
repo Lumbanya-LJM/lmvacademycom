@@ -1,4 +1,4 @@
-import { GraduationCap, Briefcase, BookOpen, Video, Rocket, Users, Gavel } from "lucide-react";
+import { GraduationCap, Briefcase, BookOpen, Video, Rocket, Users, Gavel, ArrowRight } from "lucide-react";
 import useScrollReveal from "@/hooks/useScrollReveal";
 
 const services = [
@@ -10,7 +10,9 @@ const services = [
   {
     icon: Gavel,
     title: "Moot Court Sessions & Training",
-    description: "Hands-on courtroom practice and advocacy training that builds confidence in legal argumentation, case presentation, and trial technique."
+    description: "Hands-on courtroom practice and advocacy training that builds confidence in legal argumentation, case presentation, and trial technique.",
+    cta: "Start your training now!",
+    href: "https://app.lmvacademy.com/auth"
   },
   {
     icon: Briefcase,
