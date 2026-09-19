@@ -90,7 +90,20 @@ const Navbar = () => {
               }`}
             >
               <LogIn className="w-4 h-4" />
-              Portal
+              Student Portal
+            </a>
+            <a
+              href="https://app.lmvacademy.com/tutor"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`font-body text-sm font-medium transition-colors duration-300 flex items-center gap-1.5 ${
+                isScrolled
+                  ? "text-foreground hover:text-primary"
+                  : "text-primary-foreground/90 hover:text-primary-foreground"
+              }`}
+            >
+              <LogIn className="w-4 h-4" />
+              Tutor Portal
             </a>
             <Button
               variant={isScrolled ? "default" : "hero-outline"}
@@ -140,7 +153,16 @@ const Navbar = () => {
               className="flex items-center gap-2 w-full text-left px-4 py-3 text-foreground hover:text-primary hover:bg-secondary/50 rounded-md transition-colors font-body"
             >
               <LogIn className="w-4 h-4" />
-              Student/Tutor Portal
+              Student Portal
+            </a>
+            <a
+              href="https://app.lmvacademy.com/tutor"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 w-full text-left px-4 py-3 text-foreground hover:text-primary hover:bg-secondary/50 rounded-md transition-colors font-body"
+            >
+              <LogIn className="w-4 h-4" />
+              Tutor Portal
             </a>
             <Button
               variant="default"
