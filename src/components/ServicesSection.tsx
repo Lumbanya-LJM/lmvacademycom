@@ -24,8 +24,8 @@ const services: Array<{
   },
   {
     icon: BookOpen,
-    title: "LMV Academy Handbook",
-    description: "Our comprehensive digital handbook — an essential study companion for law students. Pay once, download instantly.",
+    title: "Mooting Handbook",
+    description: "Our comprehensive mooting handbook — an essential companion for every moot court participant. Pay once, download instantly.",
     cta: "Buy the handbook — K350 / $18",
     internalHref: "/handbook"
   },
