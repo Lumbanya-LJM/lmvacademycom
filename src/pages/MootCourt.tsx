@@ -153,6 +153,36 @@ const MootCourt = () => {
                   Fill in your details, then complete the secure payment to confirm your spot.
                 </p>
 
+                {mobileRegistered ? (
+                  <div className="space-y-5">
+                    <div className="bg-primary/5 border border-primary/20 rounded-lg p-5">
+                      <h3 className="font-heading text-base font-semibold text-foreground mb-3">
+                        You're registered, {fullName.trim().split(" ")[0]}!
+                      </h3>
+                      <ol className="list-decimal list-inside space-y-2 font-body text-sm text-foreground">
+                        <li>Message us on WhatsApp to get our <strong>mobile money agent code</strong>.</li>
+                        <li>Send <strong>K350</strong> via MTN Mobile Money or Airtel Money to that agent code.</li>
+                        <li>Share your payment screenshot on WhatsApp — we'll confirm your spot within 24 hours.</li>
+                      </ol>
+                    </div>
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-body text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
+                    >
+                      <Smartphone className="w-4 h-4" />
+                      Get the agent code on WhatsApp
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => setMobileRegistered(false)}
+                      className="w-full font-body text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      Back — I'd rather pay by card
+                    </button>
+                  </div>
+                ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
                     <label htmlFor="fullName" className="block font-body text-sm font-medium text-foreground mb-1.5">
