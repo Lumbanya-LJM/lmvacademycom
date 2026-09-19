@@ -82,16 +82,16 @@ const HandbookSuccess = () => {
                 <p className="font-body text-muted-foreground mb-8">
                   Thank you for your purchase. Your handbook is ready — download it below.
                 </p>
-                <a
-                  href={downloadHref}
-                  download={downloadName}
+                <Link
+                  to="/my-handbooks"
                   className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-8 py-3.5 font-body text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
                 >
                   <Download className="w-4 h-4" />
-                  Download the handbook (PDF)
-                </a>
+                  Go to my handbooks to download
+                </Link>
                 <p className="font-body text-xs text-muted-foreground mt-4">
-                  Keep this link — you can come back to this page to download again.
+                  Sign in with the email you paid with — your handbook stays in your
+                  account so you can download it any time.
                 </p>
               </>
             ) : (
