@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { Gavel, Check, Loader2, ArrowLeft } from "lucide-react";
+import { Gavel, Check, Loader2, ArrowLeft, CreditCard, Smartphone } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
 import { usePaddleCheckout } from "@/hooks/usePaddleCheckout";
 import { useToast } from "@/hooks/use-toast";
+
+const WHATSAPP_NUMBER = "260974534253";
 
 const included = [
   "Full moot court training sessions with experienced practitioners",
