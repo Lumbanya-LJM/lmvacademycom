@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import useScrollReveal from "@/hooks/useScrollReveal";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactSection = () => {
   const { toast } = useToast();
@@ -23,16 +24,31 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      const { error } = await supabase.functions.invoke("contact-enquiry", {
+        body: {
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          message: formData.message.trim(),
+        },
+      });
+      if (error) throw error;
 
-    toast({
-      title: "Message Sent",
-      description: "Thank you for contacting us. We'll get back to you soon."
-    });
-
-    setFormData({ name: "", email: "", message: "" });
-    setIsSubmitting(false);
+      toast({
+        title: "Message Sent",
+        description: "Thank you for contacting us. We'll get back to you soon."
+      });
+      setFormData({ name: "", email: "", message: "" });
+    } catch (err) {
+      console.error(err);
+      toast({
+        title: "Could not send",
+        description: "Please try again, or reach us directly on WhatsApp at +260 974 534 253.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
