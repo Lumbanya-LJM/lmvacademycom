@@ -49,7 +49,7 @@ const HandbookSuccess = () => {
   return (
     <>
       <Helmet>
-        <title>Thank You | LMV Academy Handbook</title>
+        <title>Thank You | Mooting Handbook</title>
         <meta name="robots" content="noindex" />
       </Helmet>
 
@@ -80,7 +80,7 @@ const HandbookSuccess = () => {
                 </p>
                 <a
                   href="/handbook.pdf"
-                  download="LMV-Academy-Handbook.pdf"
+                  download="Mooting-Handbook.pdf"
                   className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-8 py-3.5 font-body text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
                 >
                   <Download className="w-4 h-4" />
