@@ -1,6 +1,8 @@
 # Roadmap
 
-- [ ] Handbook purchase on Services section — need price + what buyer receives (asked user). Then: product+price, purchase link/checkout on service card, delivery (email/download).
+- [ ] Handbook purchase on Services — WAITING ON USER: price + upload the handbook PDF. Then: product+price, purchase button on service card, PDF delivery after payment.
+- [x] Admin registrations page (/admin): staff sign-in, registrations + enquiries lists. TODO: after user signs up, grant their account the admin role.
+- [x] Price removed from Moot Court service card (price still shown on /moot-court registration page).
 - [ ] Moot Court registration page (/moot-court): student details form → pay $18 (≈K350) → confirmation email.
   - [x] Payments enabled (test + live), product moot_court_package, price moot_court_full ($18)
   - [x] Checkout plumbing: paddle.ts, usePaddleCheckout, get-paddle-price function (deployed, verified)
