@@ -11,10 +11,11 @@ import { useToast } from "@/hooks/use-toast";
 const WHATSAPP_NUMBER = "260974534253";
 
 const included = [
-  "Comprehensive study material curated by LMV Academy practitioners",
-  "Practical guidance for law students at every stage",
-  "Instant PDF download after payment",
-  "Yours to keep — study anytime, anywhere",
+  "A step-by-step guide to moot court preparation and structure",
+  "Written and reviewed by experienced lawyers",
+  "Tips on oral advocacy, legal argumentation and courtroom etiquette",
+  "Sample moot problems and brief-writing guidance",
+  "Instant PDF download after payment — yours to keep forever",
 ];
 
 const Handbook = () => {
