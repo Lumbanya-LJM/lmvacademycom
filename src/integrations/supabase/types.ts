@@ -41,6 +41,42 @@ export type Database = {
         }
         Relationships: []
       }
+      handbook_purchases: {
+        Row: {
+          created_at: string
+          email: string
+          environment: string
+          full_name: string
+          id: string
+          paddle_transaction_id: string | null
+          payment_method: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          environment?: string
+          full_name: string
+          id?: string
+          paddle_transaction_id?: string | null
+          payment_method?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          environment?: string
+          full_name?: string
+          id?: string
+          paddle_transaction_id?: string | null
+          payment_method?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       moot_court_registrations: {
         Row: {
           created_at: string

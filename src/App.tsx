@@ -7,6 +7,8 @@ import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import MootCourt from "./pages/MootCourt";
 import MootCourtSuccess from "./pages/MootCourtSuccess";
+import Handbook from "./pages/Handbook";
+import HandbookSuccess from "./pages/HandbookSuccess";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import RefundPolicy from "./pages/RefundPolicy";
@@ -26,6 +28,8 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/moot-court" element={<MootCourt />} />
             <Route path="/moot-court/success" element={<MootCourtSuccess />} />
+            <Route path="/handbook" element={<Handbook />} />
+            <Route path="/handbook/success" element={<HandbookSuccess />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsOfService />} />
             <Route path="/refund" element={<RefundPolicy />} />

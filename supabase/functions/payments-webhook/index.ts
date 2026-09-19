@@ -14,26 +14,31 @@ function getSupabase() {
 
 async function handleTransactionCompleted(data: any, env: PaddleEnv) {
   const registrationId = data.customData?.registrationId;
-  if (!registrationId) {
-    console.log('transaction.completed without registrationId — not a moot court registration');
+  const purchaseId = data.customData?.purchaseId;
+
+  if (!registrationId && !purchaseId) {
+    console.log('transaction.completed without registrationId or purchaseId — ignoring');
     return;
   }
 
+  const table = purchaseId ? 'handbook_purchases' : 'moot_court_registrations';
+  const recordId = purchaseId ?? registrationId;
+
   const { error } = await getSupabase()
-    .from('moot_court_registrations')
+    .from(table)
     .update({
       status: 'paid',
       paddle_transaction_id: data.id,
       environment: env,
       updated_at: new Date().toISOString(),
     })
-    .eq('id', registrationId);
+    .eq('id', recordId);
 
   if (error) {
-    console.error('Failed to mark registration paid:', error);
+    console.error(`Failed to mark ${table} record paid:`, error);
     throw error;
   }
-  console.log(`Registration ${registrationId} marked paid (${env})`);
+  console.log(`${table} record ${recordId} marked paid (${env})`);
 }
 
 Deno.serve(async (req) => {
