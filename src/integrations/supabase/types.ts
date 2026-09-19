@@ -50,6 +50,7 @@ export type Database = {
           id: string
           paddle_transaction_id: string | null
           payment_method: string
+          product: string
           status: string
           updated_at: string
         }
@@ -61,6 +62,7 @@ export type Database = {
           id?: string
           paddle_transaction_id?: string | null
           payment_method?: string
+          product?: string
           status?: string
           updated_at?: string
         }
@@ -72,6 +74,7 @@ export type Database = {
           id?: string
           paddle_transaction_id?: string | null
           payment_method?: string
+          product?: string
           status?: string
           updated_at?: string
         }

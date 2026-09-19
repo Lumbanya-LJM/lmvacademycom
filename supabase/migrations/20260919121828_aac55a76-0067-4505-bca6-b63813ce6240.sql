@@ -1,0 +1,1 @@
+ALTER TABLE public.handbook_purchases ADD COLUMN product text NOT NULL DEFAULT 'mooting';
