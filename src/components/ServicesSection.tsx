@@ -21,8 +21,7 @@ const services: Array<{
     title: "Moot Court Sessions & Training",
     description: "Hands-on courtroom practice and advocacy training that builds confidence in legal argumentation, case presentation, and trial technique.",
     cta: "Start your training now!",
-    priceId: "moot_court_full",
-    priceLabel: "K350 / $18 — full package"
+    priceId: "moot_court_full"
   },
   {
     icon: Briefcase,
