@@ -20,9 +20,7 @@ const services: Array<{
   {
     icon: Gavel,
     title: "Moot Court Sessions & Training",
-    description: "Hands-on courtroom practice and advocacy training that builds confidence in legal argumentation, case presentation, and trial technique.",
-    cta: "Start your training now!",
-    priceId: "moot_court_full"
+    description: "Hands-on courtroom practice and advocacy training that builds confidence in legal argumentation, case presentation, and trial technique."
   },
   {
     icon: BookOpen,
