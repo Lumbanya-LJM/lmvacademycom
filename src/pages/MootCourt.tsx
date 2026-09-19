@@ -198,17 +198,51 @@ const MootCourt = () => {
                     />
                   </div>
 
+                  <div>
+                    <p className="block font-body text-sm font-medium text-foreground mb-2">
+                      How would you like to pay?
+                    </p>
+                    <div className="grid grid-cols-2 gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setPaymentMethod("card")}
+                        className={`flex items-center justify-center gap-2 rounded-lg border px-4 py-3 font-body text-sm font-medium transition-colors ${
+                          paymentMethod === "card"
+                            ? "border-primary bg-primary/5 text-primary"
+                            : "border-border bg-background text-muted-foreground hover:border-primary/40"
+                        }`}
+                      >
+                        <CreditCard className="w-4 h-4" />
+                        Card
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setPaymentMethod("mobile")}
+                        className={`flex items-center justify-center gap-2 rounded-lg border px-4 py-3 font-body text-sm font-medium transition-colors ${
+                          paymentMethod === "mobile"
+                            ? "border-primary bg-primary/5 text-primary"
+                            : "border-border bg-background text-muted-foreground hover:border-primary/40"
+                        }`}
+                      >
+                        <Smartphone className="w-4 h-4" />
+                        Mobile Money
+                      </button>
+                    </div>
+                  </div>
+
                   <button
                     type="submit"
                     disabled={loading}
                     className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-body text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-60"
                   >
                     {loading && <Loader2 className="w-4 h-4 animate-spin" />}
-                    Start your training now!
+                    {paymentMethod === "card" ? "Start your training now!" : "Register & pay with Mobile Money"}
                   </button>
 
                   <p className="font-body text-xs text-muted-foreground text-center">
-                    Secure payment. You'll receive a confirmation email once your payment is complete.
+                    {paymentMethod === "card"
+                      ? "Secure payment. You'll receive a confirmation email once your payment is complete."
+                      : "You'll get our mobile money agent code and payment steps on the next screen."}
                   </p>
                 </form>
               </div>
