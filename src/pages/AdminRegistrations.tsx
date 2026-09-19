@@ -26,6 +26,16 @@ interface Enquiry {
   created_at: string;
 }
 
+interface Purchase {
+  id: string;
+  full_name: string;
+  email: string;
+  status: string;
+  environment: string;
+  payment_method: string;
+  created_at: string;
+}
+
 const AdminRegistrations = () => {
   const { toast } = useToast();
   const [session, setSession] = useState<Session | null>(null);
@@ -38,17 +48,20 @@ const AdminRegistrations = () => {
   const [dataLoading, setDataLoading] = useState(false);
   const [markingPaid, setMarkingPaid] = useState<string | null>(null);
 
-  const markAsPaid = async (id: string) => {
+  const markAsPaid = async (id: string, table: "moot_court_registrations" | "handbook_purchases") => {
     setMarkingPaid(id);
     const { error } = await supabase
-      .from("moot_court_registrations")
+      .from(table)
       .update({ status: "paid" })
       .eq("id", id);
     if (error) {
       toast({ title: "Update failed", description: error.message, variant: "destructive" });
-    } else {
+    } else if (table === "moot_court_registrations") {
       setRegistrations((prev) => prev.map((r) => (r.id === id ? { ...r, status: "paid" } : r)));
       toast({ title: "Marked as paid", description: "The registration is now confirmed." });
+    } else {
+      setPurchases((prev) => prev.map((p) => (p.id === id ? { ...p, status: "paid" } : p)));
+      toast({ title: "Marked as paid", description: "The handbook purchase is now confirmed." });
     }
     setMarkingPaid(null);
   };
