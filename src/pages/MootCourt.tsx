@@ -25,9 +25,34 @@ const MootCourt = () => {
   const [phone, setPhone] = useState("");
   const [paymentMethod, setPaymentMethod] = useState<"card" | "mobile">("card");
   const [mobileRegistered, setMobileRegistered] = useState(false);
+  const [registrationId, setRegistrationId] = useState<string | null>(null);
+  const [checkingStatus, setCheckingStatus] = useState(false);
+  const [confirmed, setConfirmed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const { openCheckout, loading: checkoutLoading } = usePaddleCheckout();
   const { toast } = useToast();
+
+  const checkStatus = async () => {
+    if (!registrationId) return;
+    setCheckingStatus(true);
+    try {
+      const base = import.meta.env.VITE_SUPABASE_URL;
+      const res = await fetch(`${base}/functions/v1/registration-status?id=${registrationId}`);
+      const data = await res.json();
+      if (data.status === "paid") {
+        setConfirmed(true);
+      } else {
+        toast({
+          title: "Not confirmed yet",
+          description: "We haven't received your payment yet. Send your proof on WhatsApp if you have.",
+        });
+      }
+    } catch {
+      toast({ title: "Couldn't check status", description: "Please try again in a moment.", variant: "destructive" });
+    } finally {
+      setCheckingStatus(false);
+    }
+  };
 
   const loading = submitting || checkoutLoading;
 
