@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { GraduationCap, Briefcase, BookOpen, Video, Rocket, Users, Gavel, ArrowRight, type LucideIcon } from "lucide-react";
 import useScrollReveal from "@/hooks/useScrollReveal";
 
@@ -7,6 +8,8 @@ const services: Array<{
   description: string;
   cta?: string;
   href?: string;
+  priceId?: string;
+  priceLabel?: string;
 }> = [
   {
     icon: GraduationCap,
@@ -18,7 +21,8 @@ const services: Array<{
     title: "Moot Court Sessions & Training",
     description: "Hands-on courtroom practice and advocacy training that builds confidence in legal argumentation, case presentation, and trial technique.",
     cta: "Start your training now!",
-    href: "https://app.lmvacademy.com/auth"
+    priceId: "moot_court_full",
+    priceLabel: "K350 / $18 — full package"
   },
   {
     icon: Briefcase,
@@ -95,7 +99,21 @@ const ServicesSection = () => {
                 <p className="font-body text-sm text-muted-foreground leading-relaxed">
                   {service.description}
                 </p>
-                {service.cta && service.href && (
+                {service.priceId && (
+                  <div className="mt-5">
+                    <p className="font-body text-sm font-semibold text-foreground mb-2">
+                      {service.priceLabel}
+                    </p>
+                    <Link
+                      to="/moot-court"
+                      className="inline-flex items-center gap-1.5 text-sm font-body font-semibold text-primary hover:text-primary/80 transition-colors"
+                    >
+                      <ArrowRight className="w-4 h-4" />
+                      {service.cta}
+                    </Link>
+                  </div>
+                )}
+                {!service.priceId && service.cta && service.href && (
                   <a
                     href={service.href}
                     target="_blank"

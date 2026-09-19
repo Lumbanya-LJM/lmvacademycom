@@ -9,6 +9,7 @@ import UpdatesSection from "@/components/UpdatesSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
+import { PaymentTestModeBanner } from "@/components/PaymentTestModeBanner";
 
 const Index = () => {
   const siteUrl = typeof window !== "undefined" ? window.location.origin : "https://app.lmvacademy.com";
@@ -49,6 +50,7 @@ const Index = () => {
       </Helmet>
 
       <div className="min-h-screen bg-background">
+        <PaymentTestModeBanner />
         <Navbar />
         <main>
           <HeroSection />

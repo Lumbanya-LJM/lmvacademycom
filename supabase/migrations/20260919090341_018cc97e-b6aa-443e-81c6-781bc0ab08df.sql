@@ -1,0 +1,1 @@
+DROP FUNCTION IF EXISTS public.register_moot_court(text, text, text);
