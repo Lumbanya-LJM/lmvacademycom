@@ -16,3 +16,5 @@
 - [x] Full payments/business-logic audit: catalog, auth, payment, account mgmt, entitlement, renewal. Report gaps, ask user questions, implement fixes, write preview test guide with test card.
 - [ ] Go-live walkthrough: verification in Payments tab, publish for live link. Needs user's legal business name + refund-policy confirmation.
 - [x] Policy pages (Privacy /privacy, Terms /terms, Refund /refund) + footer links — refund stance is a draft (7-day before programme starts), confirm with user.
+- [ ] Handbook: paid checkout + download flow (BLOCKED: need price + PDF file from user)
+- [ ] Mobile money option on moot court payment (in progress)
