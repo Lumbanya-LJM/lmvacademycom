@@ -57,7 +57,7 @@ const MootCourt = () => {
   const loading = submitting || checkoutLoading;
 
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    `Hello LMV Academy, I'm ${fullName.trim() || "a student"}. I've registered for Moot Court Sessions & Training and I'd like to pay K350 via mobile money. Please share your agent code. My email: ${email.trim()}`
+    `Hello LMV Academy, I'm ${fullName.trim() || "a student"}. I have paid for Moot Court Sessions & Training (K350) via mobile money at agent code 20319930. Please confirm my registration. My email: ${email.trim()}`
   )}`;
 
   const handleSubmit = async (e: React.FormEvent) => {
