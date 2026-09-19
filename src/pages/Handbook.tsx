@@ -29,7 +29,7 @@ const Handbook = () => {
   const loading = submitting || checkoutLoading;
 
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    `Hello LMV Academy, I'm ${fullName.trim() || "a student"}. I'd like to buy the LMV Academy Handbook (K350) via mobile money. Please share your agent code. My email: ${email.trim()}`
+    `Hello LMV Academy, I'm ${fullName.trim() || "a student"}. I'd like to buy the Mooting Handbook (K350) via mobile money. Please share your agent code. My email: ${email.trim()}`
   )}`;
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -84,10 +84,10 @@ const Handbook = () => {
   return (
     <>
       <Helmet>
-        <title>LMV Academy Handbook | Buy & Download</title>
+        <title>Mooting Handbook | Buy & Download</title>
         <meta
           name="description"
-          content="Buy the LMV Academy Handbook for K350 / $18. Pay by card or mobile money and download your PDF instantly."
+          content="Buy the Mooting Handbook for K350 / $18. Pay by card or mobile money and download your PDF instantly."
         />
       </Helmet>
 
@@ -110,7 +110,7 @@ const Handbook = () => {
                   <BookOpen className="w-7 h-7 text-primary" />
                 </div>
                 <h1 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
-                  LMV Academy Handbook
+                  Mooting Handbook
                 </h1>
                 <p className="font-body text-muted-foreground leading-relaxed mb-6">
                   Your essential digital study companion. Pay once and download the
