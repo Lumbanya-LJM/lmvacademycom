@@ -10,6 +10,10 @@ const STATUS_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/handbook-s
 const HandbookSuccess = () => {
   const [searchParams] = useSearchParams();
   const purchaseId = searchParams.get("id");
+  const isResearch = searchParams.get("product") === "research";
+  const productName = isResearch ? "Research Handbook" : "Mooting Handbook";
+  const downloadHref = isResearch ? "/research-handbook.pdf" : "/handbook.pdf";
+  const downloadName = isResearch ? "Research-Handbook.pdf" : "Mooting-Handbook.pdf";
   const [status, setStatus] = useState<"checking" | "paid" | "pending">("checking");
 
   useEffect(() => {
@@ -49,7 +53,7 @@ const HandbookSuccess = () => {
   return (
     <>
       <Helmet>
-        <title>Thank You | Mooting Handbook</title>
+        <title>{`Thank You | ${productName}`}</title>
         <meta name="robots" content="noindex" />
       </Helmet>
 
@@ -79,8 +83,8 @@ const HandbookSuccess = () => {
                   Thank you for your purchase. Your handbook is ready — download it below.
                 </p>
                 <a
-                  href="/handbook.pdf"
-                  download="Mooting-Handbook.pdf"
+                  href={downloadHref}
+                  download={downloadName}
                   className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-8 py-3.5 font-body text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
                 >
                   <Download className="w-4 h-4" />

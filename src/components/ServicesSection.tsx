@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { GraduationCap, Briefcase, BookOpen, Video, Rocket, Users, Gavel, ArrowRight, type LucideIcon } from "lucide-react";
+import { GraduationCap, Briefcase, BookOpen, FileText, Video, Rocket, Users, Gavel, ArrowRight, type LucideIcon } from "lucide-react";
 import useScrollReveal from "@/hooks/useScrollReveal";
 
 const services: Array<{
@@ -28,6 +28,13 @@ const services: Array<{
     description: "Our comprehensive mooting handbook — an essential companion for every moot court participant. Pay once, download instantly.",
     cta: "Buy the handbook — K350 / $18",
     internalHref: "/handbook"
+  },
+  {
+    icon: FileText,
+    title: "Research Handbook",
+    description: "Our practical research handbook — a complete guide to academic and legal research, with templates and citation tips. Pay once, download instantly.",
+    cta: "Buy the handbook — K500 / $26",
+    internalHref: "/research-handbook"
   },
   {
     icon: Briefcase,
