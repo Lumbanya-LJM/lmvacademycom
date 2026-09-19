@@ -36,6 +36,22 @@ const AdminRegistrations = () => {
   const [registrations, setRegistrations] = useState<Registration[]>([]);
   const [enquiries, setEnquiries] = useState<Enquiry[]>([]);
   const [dataLoading, setDataLoading] = useState(false);
+  const [markingPaid, setMarkingPaid] = useState<string | null>(null);
+
+  const markAsPaid = async (id: string) => {
+    setMarkingPaid(id);
+    const { error } = await supabase
+      .from("moot_court_registrations")
+      .update({ status: "paid" })
+      .eq("id", id);
+    if (error) {
+      toast({ title: "Update failed", description: error.message, variant: "destructive" });
+    } else {
+      setRegistrations((prev) => prev.map((r) => (r.id === id ? { ...r, status: "paid" } : r)));
+      toast({ title: "Marked as paid", description: "The registration is now confirmed." });
+    }
+    setMarkingPaid(null);
+  };
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, s) => {
