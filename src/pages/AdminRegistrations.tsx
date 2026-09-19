@@ -14,6 +14,7 @@ interface Registration {
   phone: string | null;
   status: string;
   environment: string;
+  payment_method: string;
   created_at: string;
 }
 
@@ -35,6 +36,22 @@ const AdminRegistrations = () => {
   const [registrations, setRegistrations] = useState<Registration[]>([]);
   const [enquiries, setEnquiries] = useState<Enquiry[]>([]);
   const [dataLoading, setDataLoading] = useState(false);
+  const [markingPaid, setMarkingPaid] = useState<string | null>(null);
+
+  const markAsPaid = async (id: string) => {
+    setMarkingPaid(id);
+    const { error } = await supabase
+      .from("moot_court_registrations")
+      .update({ status: "paid" })
+      .eq("id", id);
+    if (error) {
+      toast({ title: "Update failed", description: error.message, variant: "destructive" });
+    } else {
+      setRegistrations((prev) => prev.map((r) => (r.id === id ? { ...r, status: "paid" } : r)));
+      toast({ title: "Marked as paid", description: "The registration is now confirmed." });
+    }
+    setMarkingPaid(null);
+  };
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, s) => {
@@ -153,9 +170,11 @@ const AdminRegistrations = () => {
                           <th className="p-4">Name</th>
                           <th className="p-4">Email</th>
                           <th className="p-4">Phone</th>
+                          <th className="p-4">Payment</th>
                           <th className="p-4">Status</th>
                           <th className="p-4">Mode</th>
                           <th className="p-4">Registered</th>
+                          <th className="p-4"></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -164,6 +183,7 @@ const AdminRegistrations = () => {
                             <td className="p-4 text-foreground font-medium">{r.full_name}</td>
                             <td className="p-4 text-muted-foreground">{r.email}</td>
                             <td className="p-4 text-muted-foreground">{r.phone ?? "—"}</td>
+                            <td className="p-4 text-muted-foreground">{r.payment_method === "mobile_money" ? "Mobile Money" : "Card"}</td>
                             <td className="p-4">
                               <span className={`inline-block px-2 py-1 rounded-full text-xs font-semibold ${r.status === "paid" ? "bg-green-100 text-green-800" : "bg-orange-100 text-orange-800"}`}>
                                 {r.status}
@@ -171,6 +191,18 @@ const AdminRegistrations = () => {
                             </td>
                             <td className="p-4 text-muted-foreground">{r.environment}</td>
                             <td className="p-4 text-muted-foreground">{formatDate(r.created_at)}</td>
+                            <td className="p-4">
+                              {r.status !== "paid" && r.payment_method === "mobile_money" && (
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  disabled={markingPaid === r.id}
+                                  onClick={() => markAsPaid(r.id)}
+                                >
+                                  {markingPaid === r.id ? <Loader2 className="w-3 h-3 animate-spin" /> : "Mark paid"}
+                                </Button>
+                              )}
+                            </td>
                           </tr>
                         ))}
                       </tbody>

@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { Gavel, Check, Loader2, ArrowLeft } from "lucide-react";
+import { Gavel, Check, Loader2, ArrowLeft, CreditCard, Smartphone } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
 import { usePaddleCheckout } from "@/hooks/usePaddleCheckout";
 import { useToast } from "@/hooks/use-toast";
+
+const WHATSAPP_NUMBER = "260974534253";
 
 const included = [
   "Full moot court training sessions with experienced practitioners",
@@ -21,11 +23,17 @@ const MootCourt = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState<"card" | "mobile">("card");
+  const [mobileRegistered, setMobileRegistered] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const { openCheckout, loading: checkoutLoading } = usePaddleCheckout();
   const { toast } = useToast();
 
   const loading = submitting || checkoutLoading;
+
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    `Hello LMV Academy, I'm ${fullName.trim() || "a student"}. I've registered for Moot Court Sessions & Training and I'd like to pay K350 via mobile money. Please share your agent code. My email: ${email.trim()}`
+  )}`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,10 +56,16 @@ const MootCourt = () => {
           full_name: fullName.trim(),
           email: email.trim().toLowerCase(),
           phone: phone.trim() || null,
+          payment_method: paymentMethod === "mobile" ? "mobile_money" : "card",
         });
 
       if (error) {
         throw new Error(error.message || "Could not save registration");
+      }
+
+      if (paymentMethod === "mobile") {
+        setMobileRegistered(true);
+        return;
       }
 
       await openCheckout({
@@ -139,6 +153,36 @@ const MootCourt = () => {
                   Fill in your details, then complete the secure payment to confirm your spot.
                 </p>
 
+                {mobileRegistered ? (
+                  <div className="space-y-5">
+                    <div className="bg-primary/5 border border-primary/20 rounded-lg p-5">
+                      <h3 className="font-heading text-base font-semibold text-foreground mb-3">
+                        You're registered, {fullName.trim().split(" ")[0]}!
+                      </h3>
+                      <ol className="list-decimal list-inside space-y-2 font-body text-sm text-foreground">
+                        <li>Message us on WhatsApp to get our <strong>mobile money agent code</strong>.</li>
+                        <li>Send <strong>K350</strong> via MTN Mobile Money or Airtel Money to that agent code.</li>
+                        <li>Share your payment screenshot on WhatsApp — we'll confirm your spot within 24 hours.</li>
+                      </ol>
+                    </div>
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-body text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
+                    >
+                      <Smartphone className="w-4 h-4" />
+                      Get the agent code on WhatsApp
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => setMobileRegistered(false)}
+                      className="w-full font-body text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      Back — I'd rather pay by card
+                    </button>
+                  </div>
+                ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
                     <label htmlFor="fullName" className="block font-body text-sm font-medium text-foreground mb-1.5">
@@ -184,19 +228,54 @@ const MootCourt = () => {
                     />
                   </div>
 
+                  <div>
+                    <p className="block font-body text-sm font-medium text-foreground mb-2">
+                      How would you like to pay?
+                    </p>
+                    <div className="grid grid-cols-2 gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setPaymentMethod("card")}
+                        className={`flex items-center justify-center gap-2 rounded-lg border px-4 py-3 font-body text-sm font-medium transition-colors ${
+                          paymentMethod === "card"
+                            ? "border-primary bg-primary/5 text-primary"
+                            : "border-border bg-background text-muted-foreground hover:border-primary/40"
+                        }`}
+                      >
+                        <CreditCard className="w-4 h-4" />
+                        Card
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setPaymentMethod("mobile")}
+                        className={`flex items-center justify-center gap-2 rounded-lg border px-4 py-3 font-body text-sm font-medium transition-colors ${
+                          paymentMethod === "mobile"
+                            ? "border-primary bg-primary/5 text-primary"
+                            : "border-border bg-background text-muted-foreground hover:border-primary/40"
+                        }`}
+                      >
+                        <Smartphone className="w-4 h-4" />
+                        Mobile Money
+                      </button>
+                    </div>
+                  </div>
+
                   <button
                     type="submit"
                     disabled={loading}
                     className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-body text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-60"
                   >
                     {loading && <Loader2 className="w-4 h-4 animate-spin" />}
-                    Start your training now!
+                    {paymentMethod === "card" ? "Start your training now!" : "Register & pay with Mobile Money"}
                   </button>
 
                   <p className="font-body text-xs text-muted-foreground text-center">
-                    Secure payment. You'll receive a confirmation email once your payment is complete.
+                    {paymentMethod === "card"
+                      ? "Secure payment. You'll receive a confirmation email once your payment is complete."
+                      : "You'll get our mobile money agent code and payment steps on the next screen."}
                   </p>
                 </form>
+                )}
               </div>
             </div>
           </div>
