@@ -141,6 +141,12 @@ const ResearchHandbook = () => {
                   <Download className="w-3.5 h-3.5" />
                   Digital PDF download — no shipping, no waiting.
                 </p>
+                <p className="font-body text-sm text-muted-foreground mt-4">
+                  Already paid?{" "}
+                  <Link to="/my-handbooks" className="text-primary font-medium hover:underline">
+                    Sign in to download your handbook
+                  </Link>
+                </p>
               </div>
 
               {/* Purchase form */}

@@ -18,3 +18,4 @@
 - [x] Policy pages (Privacy /privacy, Terms /terms, Refund /refund) + footer links — refund stance is a draft (7-day before programme starts), confirm with user.
 - [ ] Handbook: paid checkout + download flow at /handbook. Price K350 / $18, BOTH card + mobile money options, both prices displayed. BLOCKED: (a) user approval of create_product popup, (b) PDF file upload. Then: success page shows download once paid.
 - [ ] Mobile money option on moot court payment (in progress)
+- [x] Authenticated handbook downloads: private file store + /my-handbooks account page (sign in with paying email, download only paid handbooks via short-lived link). WAITING ON USER: upload Mooting + Research Handbook PDFs.

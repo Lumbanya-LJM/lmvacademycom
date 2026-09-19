@@ -10,6 +10,7 @@ import MootCourtSuccess from "./pages/MootCourtSuccess";
 import Handbook from "./pages/Handbook";
 import HandbookSuccess from "./pages/HandbookSuccess";
 import ResearchHandbook from "./pages/ResearchHandbook";
+import MyHandbooks from "./pages/MyHandbooks";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import RefundPolicy from "./pages/RefundPolicy";
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/handbook" element={<Handbook />} />
             <Route path="/handbook/success" element={<HandbookSuccess />} />
             <Route path="/research-handbook" element={<ResearchHandbook />} />
+            <Route path="/my-handbooks" element={<MyHandbooks />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsOfService />} />
             <Route path="/refund" element={<RefundPolicy />} />
