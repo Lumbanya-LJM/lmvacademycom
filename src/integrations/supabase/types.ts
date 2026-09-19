@@ -55,7 +55,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      register_moot_court: {
+        Args: { _email: string; _full_name: string; _phone?: string }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
