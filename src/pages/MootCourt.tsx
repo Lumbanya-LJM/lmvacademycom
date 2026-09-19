@@ -23,11 +23,17 @@ const MootCourt = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState<"card" | "mobile">("card");
+  const [mobileRegistered, setMobileRegistered] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const { openCheckout, loading: checkoutLoading } = usePaddleCheckout();
   const { toast } = useToast();
 
   const loading = submitting || checkoutLoading;
+
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    `Hello LMV Academy, I'm ${fullName.trim() || "a student"}. I've registered for Moot Court Sessions & Training and I'd like to pay K350 via mobile money. Please share your agent code. My email: ${email.trim()}`
+  )}`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,10 +56,16 @@ const MootCourt = () => {
           full_name: fullName.trim(),
           email: email.trim().toLowerCase(),
           phone: phone.trim() || null,
+          payment_method: paymentMethod === "mobile" ? "mobile_money" : "card",
         });
 
       if (error) {
         throw new Error(error.message || "Could not save registration");
+      }
+
+      if (paymentMethod === "mobile") {
+        setMobileRegistered(true);
+        return;
       }
 
       await openCheckout({
