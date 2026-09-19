@@ -158,8 +158,7 @@ const Handbook = () => {
                         Almost there, {fullName.trim().split(" ")[0]}!
                       </h3>
                       <ol className="list-decimal list-inside space-y-2 font-body text-sm text-foreground">
-                        <li>Message us on WhatsApp to get our <strong>mobile money agent code</strong>.</li>
-                        <li>Send <strong>K350</strong> via MTN Mobile Money or Airtel Money to that agent code.</li>
+                        <li>Send <strong>K350</strong> via Airtel Money to agent code <strong className="text-primary">20319930</strong>.</li>
                         <li>Share your payment screenshot on WhatsApp — we'll send you the handbook once confirmed.</li>
                       </ol>
                     </div>
@@ -170,7 +169,7 @@ const Handbook = () => {
                       className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-body text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
                     >
                       <Smartphone className="w-4 h-4" />
-                      Get the agent code on WhatsApp
+                      Send your payment proof on WhatsApp
                     </a>
                     <button
                       type="button"
