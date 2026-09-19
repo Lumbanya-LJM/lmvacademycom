@@ -24,6 +24,13 @@ const services: Array<{
     priceId: "moot_court_full"
   },
   {
+    icon: BookOpen,
+    title: "LMV Academy Handbook",
+    description: "Our comprehensive digital handbook — an essential study companion for law students. Pay once, download instantly.",
+    cta: "Buy the handbook — K350 / $18",
+    internalHref: "/handbook"
+  },
+  {
     icon: Briefcase,
     title: "Professional Skills Training",
     description: "Develop essential workplace competencies including communication, leadership, and career readiness skills."
