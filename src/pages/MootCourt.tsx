@@ -275,6 +275,7 @@ const MootCourt = () => {
                       : "You'll get our mobile money agent code and payment steps on the next screen."}
                   </p>
                 </form>
+                )}
               </div>
             </div>
           </div>
