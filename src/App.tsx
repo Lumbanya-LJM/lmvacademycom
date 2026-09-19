@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
+import MootCourt from "./pages/MootCourt";
+import MootCourtSuccess from "./pages/MootCourtSuccess";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
