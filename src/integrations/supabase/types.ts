@@ -14,7 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      moot_court_registrations: {
+        Row: {
+          created_at: string
+          email: string
+          environment: string
+          full_name: string
+          id: string
+          paddle_transaction_id: string | null
+          phone: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          environment?: string
+          full_name: string
+          id?: string
+          paddle_transaction_id?: string | null
+          phone?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          environment?: string
+          full_name?: string
+          id?: string
+          paddle_transaction_id?: string | null
+          phone?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
