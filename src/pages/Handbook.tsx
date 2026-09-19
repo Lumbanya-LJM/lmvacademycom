@@ -30,7 +30,7 @@ const Handbook = () => {
   const loading = submitting || checkoutLoading;
 
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    `Hello LMV Academy, I'm ${fullName.trim() || "a student"}. I'd like to buy the Mooting Handbook (K350) via mobile money. Please share your agent code. My email: ${email.trim()}`
+    `Hello LMV Academy, I'm ${fullName.trim() || "a student"}. I have paid for the handbook (K350) via mobile money. Please send me a received confirmation. My email: ${email.trim()}`
   )}`;
 
   const handleSubmit = async (e: React.FormEvent) => {
