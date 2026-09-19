@@ -44,6 +44,7 @@ const AdminRegistrations = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [registrations, setRegistrations] = useState<Registration[]>([]);
+  const [purchases, setPurchases] = useState<Purchase[]>([]);
   const [enquiries, setEnquiries] = useState<Enquiry[]>([]);
   const [dataLoading, setDataLoading] = useState(false);
   const [markingPaid, setMarkingPaid] = useState<string | null>(null);
@@ -82,11 +83,13 @@ const AdminRegistrations = () => {
     if (!session) return;
     const load = async () => {
       setDataLoading(true);
-      const [{ data: regs }, { data: enqs }] = await Promise.all([
+      const [{ data: regs }, { data: buys }, { data: enqs }] = await Promise.all([
         supabase.from("moot_court_registrations").select("*").order("created_at", { ascending: false }),
+        supabase.from("handbook_purchases").select("*").order("created_at", { ascending: false }),
         supabase.from("contact_enquiries").select("*").order("created_at", { ascending: false }),
       ]);
       setRegistrations(regs ?? []);
+      setPurchases(buys ?? []);
       setEnquiries(enqs ?? []);
       setDataLoading(false);
     };
@@ -210,9 +213,67 @@ const AdminRegistrations = () => {
                                   size="sm"
                                   variant="outline"
                                   disabled={markingPaid === r.id}
-                                  onClick={() => markAsPaid(r.id)}
+                                  onClick={() => markAsPaid(r.id, "moot_court_registrations")}
                                 >
                                   {markingPaid === r.id ? <Loader2 className="w-3 h-3 animate-spin" /> : "Mark paid"}
+                                </Button>
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </section>
+
+              <section>
+                <div className="flex items-center gap-3 mb-4">
+                  <BookOpen className="w-5 h-5 text-primary" />
+                  <h2 className="font-heading text-xl font-semibold text-foreground">
+                    Mooting Handbook Purchases ({purchases.length})
+                  </h2>
+                </div>
+                {purchases.length === 0 ? (
+                  <p className="font-body text-muted-foreground bg-card border border-border rounded-xl p-6">
+                    No handbook purchases yet.
+                  </p>
+                ) : (
+                  <div className="overflow-x-auto bg-card border border-border rounded-xl">
+                    <table className="w-full min-w-[720px] text-left">
+                      <thead>
+                        <tr className="border-b border-border">
+                          <th className="p-4 font-heading text-sm font-semibold text-foreground">Name</th>
+                          <th className="p-4 font-heading text-sm font-semibold text-foreground">Email</th>
+                          <th className="p-4 font-heading text-sm font-semibold text-foreground">Payment</th>
+                          <th className="p-4 font-heading text-sm font-semibold text-foreground">Status</th>
+                          <th className="p-4 font-heading text-sm font-semibold text-foreground">Environment</th>
+                          <th className="p-4 font-heading text-sm font-semibold text-foreground">Date</th>
+                          <th className="p-4"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {purchases.map((p) => (
+                          <tr key={p.id} className="border-b border-border last:border-0">
+                            <td className="p-4 text-foreground font-medium">{p.full_name}</td>
+                            <td className="p-4 text-muted-foreground">{p.email}</td>
+                            <td className="p-4 text-muted-foreground">{p.payment_method === "mobile_money" ? "Mobile Money" : "Card"}</td>
+                            <td className="p-4">
+                              <span className={`inline-block px-2 py-1 rounded-full text-xs font-semibold ${p.status === "paid" ? "bg-green-100 text-green-800" : "bg-orange-100 text-orange-800"}`}>
+                                {p.status}
+                              </span>
+                            </td>
+                            <td className="p-4 text-muted-foreground">{p.environment}</td>
+                            <td className="p-4 text-muted-foreground">{formatDate(p.created_at)}</td>
+                            <td className="p-4">
+                              {p.status !== "paid" && p.payment_method === "mobile_money" && (
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  disabled={markingPaid === p.id}
+                                  onClick={() => markAsPaid(p.id, "handbook_purchases")}
+                                >
+                                  {markingPaid === p.id ? <Loader2 className="w-3 h-3 animate-spin" /> : "Mark paid"}
                                 </Button>
                               )}
                             </td>
