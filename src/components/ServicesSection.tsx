@@ -8,6 +8,7 @@ const services: Array<{
   description: string;
   cta?: string;
   href?: string;
+  internalHref?: string;
   priceId?: string;
   priceLabel?: string;
 }> = [
@@ -118,6 +119,15 @@ const ServicesSection = () => {
                       {service.cta}
                     </Link>
                   </div>
+                )}
+                {!service.priceId && service.cta && service.internalHref && (
+                  <Link
+                    to={service.internalHref}
+                    className="inline-flex items-center gap-1.5 mt-5 text-sm font-body font-semibold text-primary hover:text-primary/80 transition-colors"
+                  >
+                    {service.cta}
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
                 )}
                 {!service.priceId && service.cta && service.href && (
                   <a
