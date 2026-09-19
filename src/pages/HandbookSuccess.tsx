@@ -12,8 +12,6 @@ const HandbookSuccess = () => {
   const purchaseId = searchParams.get("id");
   const isResearch = searchParams.get("product") === "research";
   const productName = isResearch ? "Research Handbook" : "Mooting Handbook";
-  const downloadHref = isResearch ? "/research-handbook.pdf" : "/handbook.pdf";
-  const downloadName = isResearch ? "Research-Handbook.pdf" : "Mooting-Handbook.pdf";
   const [status, setStatus] = useState<"checking" | "paid" | "pending">("checking");
 
   useEffect(() => {
