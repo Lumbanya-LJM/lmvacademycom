@@ -13,8 +13,8 @@ const WHATSAPP_NUMBER = "260974534253";
 const included = [
   "A step-by-step guide to moot court preparation and structure",
   "Written and reviewed by experienced lawyers",
+  "Templates for moot briefs you can use right away",
   "Tips on oral advocacy, legal argumentation and courtroom etiquette",
-  "Sample moot problems and brief-writing guidance",
   "Instant PDF download after payment — yours to keep forever",
 ];
 
