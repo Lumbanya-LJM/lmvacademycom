@@ -162,6 +162,16 @@ const Handbook = () => {
                         <li>Share your payment screenshot on WhatsApp — we'll send you the handbook once confirmed.</li>
                       </ol>
                     </div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        navigator.clipboard?.writeText("20319930");
+                        toast({ title: "Agent code copied", description: "20319930 — paste it in your Airtel Money app." });
+                      }}
+                      className="w-full inline-flex items-center justify-center gap-2 rounded-lg border border-primary bg-primary/5 px-6 py-3 font-body text-sm font-semibold text-primary hover:bg-primary/10 transition-colors"
+                    >
+                      Copy agent code
+                    </button>
                     <a
                       href={whatsappUrl}
                       target="_blank"
