@@ -40,25 +40,25 @@ const MootCourt = () => {
 
     setSubmitting(true);
     try {
-      const { data, error } = await supabase
+      const registrationId = crypto.randomUUID();
+      const { error } = await supabase
         .from("moot_court_registrations")
         .insert({
+          id: registrationId,
           full_name: fullName.trim(),
           email: email.trim().toLowerCase(),
           phone: phone.trim() || null,
-        })
-        .select("id")
-        .single();
+        });
 
-      if (error || !data?.id) {
-        throw new Error(error?.message || "Could not save registration");
+      if (error) {
+        throw new Error(error.message || "Could not save registration");
       }
 
       await openCheckout({
         priceId: "moot_court_full",
         quantity: 1,
         customerEmail: email.trim().toLowerCase(),
-        customData: { registrationId: data.id },
+        customData: { registrationId },
         successUrl: `${window.location.origin}/moot-court/success`,
       });
     } catch (err) {
