@@ -57,7 +57,7 @@ const MootCourt = () => {
   const loading = submitting || checkoutLoading;
 
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    `Hello LMV Academy, I'm ${fullName.trim() || "a student"}. I've registered for Moot Court Sessions & Training and I'd like to pay K350 via mobile money. Please share your agent code. My email: ${email.trim()}`
+    `Hello LMV Academy, I'm ${fullName.trim() || "a student"}. I have paid for Moot Court Sessions & Training (K350) via mobile money at agent code 20319930. Please confirm my registration. My email: ${email.trim()}`
   )}`;
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -200,7 +200,7 @@ const MootCourt = () => {
                         You're registered, {fullName.trim().split(" ")[0]}!
                       </h3>
                       <ol className="list-decimal list-inside space-y-2 font-body text-sm text-foreground">
-                        <li>Send <strong>K350</strong> via Airtel Money to agent code <strong className="text-primary">20319930</strong>.</li>
+                        <li>Withdraw <strong>K350</strong> from Airtel Money agent code <strong className="text-primary">20319930</strong>.</li>
                         <li>Share your payment screenshot on WhatsApp — we'll confirm your spot within 24 hours.</li>
                       </ol>
                     </div>
