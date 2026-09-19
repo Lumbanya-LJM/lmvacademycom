@@ -49,6 +49,7 @@ export type Database = {
           full_name: string
           id: string
           paddle_transaction_id: string | null
+          payment_method: string
           phone: string | null
           status: string
           updated_at: string
@@ -60,6 +61,7 @@ export type Database = {
           full_name: string
           id?: string
           paddle_transaction_id?: string | null
+          payment_method?: string
           phone?: string | null
           status?: string
           updated_at?: string
@@ -71,6 +73,7 @@ export type Database = {
           full_name?: string
           id?: string
           paddle_transaction_id?: string | null
+          payment_method?: string
           phone?: string | null
           status?: string
           updated_at?: string
