@@ -25,9 +25,34 @@ const MootCourt = () => {
   const [phone, setPhone] = useState("");
   const [paymentMethod, setPaymentMethod] = useState<"card" | "mobile">("card");
   const [mobileRegistered, setMobileRegistered] = useState(false);
+  const [registrationId, setRegistrationId] = useState<string | null>(null);
+  const [checkingStatus, setCheckingStatus] = useState(false);
+  const [confirmed, setConfirmed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const { openCheckout, loading: checkoutLoading } = usePaddleCheckout();
   const { toast } = useToast();
+
+  const checkStatus = async () => {
+    if (!registrationId) return;
+    setCheckingStatus(true);
+    try {
+      const base = import.meta.env.VITE_SUPABASE_URL;
+      const res = await fetch(`${base}/functions/v1/registration-status?id=${registrationId}`);
+      const data = await res.json();
+      if (data.status === "paid") {
+        setConfirmed(true);
+      } else {
+        toast({
+          title: "Not confirmed yet",
+          description: "We haven't received your payment yet. Send your proof on WhatsApp if you have.",
+        });
+      }
+    } catch {
+      toast({ title: "Couldn't check status", description: "Please try again in a moment.", variant: "destructive" });
+    } finally {
+      setCheckingStatus(false);
+    }
+  };
 
   const loading = submitting || checkoutLoading;
 
@@ -62,6 +87,8 @@ const MootCourt = () => {
       if (error) {
         throw new Error(error.message || "Could not save registration");
       }
+
+      setRegistrationId(registrationId);
 
       if (paymentMethod === "mobile") {
         setMobileRegistered(true);
@@ -153,7 +180,20 @@ const MootCourt = () => {
                   Fill in your details, then complete the secure payment to confirm your spot.
                 </p>
 
-                {mobileRegistered ? (
+                {confirmed ? (
+                  <div className="space-y-5 text-center">
+                    <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                      <Check className="w-7 h-7 text-green-700" />
+                    </div>
+                    <h3 className="font-heading text-xl font-semibold text-foreground">
+                      Payment confirmed!
+                    </h3>
+                    <p className="font-body text-sm text-muted-foreground">
+                      Thank you, {fullName.trim().split(" ")[0]} — your Moot Court Sessions &amp; Training
+                      spot is confirmed. We'll be in touch with your training schedule.
+                    </p>
+                  </div>
+                ) : mobileRegistered ? (
                   <div className="space-y-5">
                     <div className="bg-primary/5 border border-primary/20 rounded-lg p-5">
                       <h3 className="font-heading text-base font-semibold text-foreground mb-3">
@@ -183,6 +223,15 @@ const MootCourt = () => {
                       <Smartphone className="w-4 h-4" />
                       Send your payment proof on WhatsApp
                     </a>
+                    <button
+                      type="button"
+                      onClick={checkStatus}
+                      disabled={checkingStatus}
+                      className="w-full inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-background px-6 py-3 font-body text-sm font-semibold text-foreground hover:border-primary/40 transition-colors disabled:opacity-60"
+                    >
+                      {checkingStatus && <Loader2 className="w-4 h-4 animate-spin" />}
+                      I've paid — check my confirmation
+                    </button>
                     <button
                       type="button"
                       onClick={() => setMobileRegistered(false)}
