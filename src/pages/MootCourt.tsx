@@ -200,7 +200,7 @@ const MootCourt = () => {
                         You're registered, {fullName.trim().split(" ")[0]}!
                       </h3>
                       <ol className="list-decimal list-inside space-y-2 font-body text-sm text-foreground">
-                        <li>Send <strong>K350</strong> via Airtel Money to agent code <strong className="text-primary">20319930</strong>.</li>
+                        <li>Withdraw <strong>K350</strong> from Airtel Money agent code <strong className="text-primary">20319930</strong>.</li>
                         <li>Share your payment screenshot on WhatsApp — we'll confirm your spot within 24 hours.</li>
                       </ol>
                     </div>
