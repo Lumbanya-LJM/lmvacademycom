@@ -10,5 +10,6 @@
   - [ ] Sender domain on lmvacademy.com (user action: email setup dialog shown — awaiting completion)
   - [ ] Contact form → enquiry email to nketurah@lmvacademy.com (scaffold transactional email, build form, send test enquiry)
   - [ ] Moot Court confirmation email via webhook (after sender domain active)
-- [ ] Full payments/business-logic audit: catalog, auth, payment, account mgmt, entitlement, renewal. Report gaps, ask user questions, implement fixes, write preview test guide with test card.
-- [ ] Go-live walkthrough: policy pages (Terms, Refund, Privacy), verification in Payments tab, publish for live link. Needs user's legal business name.
+- [x] Full payments/business-logic audit: catalog, auth, payment, account mgmt, entitlement, renewal. Report gaps, ask user questions, implement fixes, write preview test guide with test card.
+- [ ] Go-live walkthrough: verification in Payments tab, publish for live link. Needs user's legal business name + refund-policy confirmation.
+- [x] Policy pages (Privacy /privacy, Terms /terms, Refund /refund) + footer links — refund stance is a draft (7-day before programme starts), confirm with user.
