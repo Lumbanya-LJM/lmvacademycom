@@ -1,5 +1,6 @@
-import { GraduationCap, Briefcase, BookOpen, Video, Rocket, Users, Gavel, ArrowRight, type LucideIcon } from "lucide-react";
+import { GraduationCap, Briefcase, BookOpen, Video, Rocket, Users, Gavel, ArrowRight, Loader2, type LucideIcon } from "lucide-react";
 import useScrollReveal from "@/hooks/useScrollReveal";
+import { usePaddleCheckout } from "@/hooks/usePaddleCheckout";
 
 const services: Array<{
   icon: LucideIcon;
@@ -7,6 +8,8 @@ const services: Array<{
   description: string;
   cta?: string;
   href?: string;
+  priceId?: string;
+  priceLabel?: string;
 }> = [
   {
     icon: GraduationCap,
@@ -18,7 +21,8 @@ const services: Array<{
     title: "Moot Court Sessions & Training",
     description: "Hands-on courtroom practice and advocacy training that builds confidence in legal argumentation, case presentation, and trial technique.",
     cta: "Start your training now!",
-    href: "https://app.lmvacademy.com/auth"
+    priceId: "moot_court_full",
+    priceLabel: "K350 / $18 — full package"
   },
   {
     icon: Briefcase,
@@ -50,6 +54,7 @@ const services: Array<{
 const ServicesSection = () => {
   const headerReveal = useScrollReveal();
   const servicesReveal = useScrollReveal({ threshold: 0.05 });
+  const { openCheckout, loading: checkoutLoading } = usePaddleCheckout();
 
   return (
     <section id="services" className="section-padding bg-secondary/30">
@@ -95,7 +100,26 @@ const ServicesSection = () => {
                 <p className="font-body text-sm text-muted-foreground leading-relaxed">
                   {service.description}
                 </p>
-                {service.cta && service.href && (
+                {service.priceId && (
+                  <div className="mt-5">
+                    <p className="font-body text-sm font-semibold text-foreground mb-2">
+                      {service.priceLabel}
+                    </p>
+                    <button
+                      onClick={() => openCheckout({ priceId: service.priceId!, quantity: 1 })}
+                      disabled={checkoutLoading}
+                      className="inline-flex items-center gap-1.5 text-sm font-body font-semibold text-primary hover:text-primary/80 transition-colors disabled:opacity-60"
+                    >
+                      {checkoutLoading ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      ) : (
+                        <ArrowRight className="w-4 h-4" />
+                      )}
+                      {service.cta}
+                    </button>
+                  </div>
+                )}
+                {!service.priceId && service.cta && service.href && (
                   <a
                     href={service.href}
                     target="_blank"
